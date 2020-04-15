@@ -9,14 +9,14 @@ class Parser {
   void expr() throws IOException {
     term();
     while(true) {
-      if( lookahead == ’+’ ) {
-        match(’+’);
+      if( lookahead == '+' ) {
+        match('+');
         term();
-        System.out.write(’+’);
-      } else if( lookahead == ’-’ ) {
-        match(’-’);
+        System.out.write('+');
+      } else if( lookahead == '-' ) {
+        match('-');
         term();
-        System.out.write(’-’);
+        System.out.write('-');
       } else
         return;
     }
@@ -42,6 +42,6 @@ public class Postfix {
   public static void main(String[] args) throws IOException {
     Parser parse = new Parser();
     parse.expr();
-    System.out.write(’\n’);
+    System.out.write('\n');
   }
 }
