@@ -12,13 +12,13 @@ public class Main {
     System.out.println("start...");
     Token tok = lex.scan(); // temporary block is used to test earlier states
     do {
-      System.out.write(tok.tag);
+      System.out.print(tok.tag);
       break;
       //tok = lex.scan();
     } while (tok.tag != 0);
     
     //Parser parse = new Parser(lex);
     //parse.program();
-    System.out.write('\n');
+    System.out.println();
   }
 }
