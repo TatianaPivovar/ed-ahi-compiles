@@ -8,7 +8,13 @@ import parser.*;
 public class Main {
   public static void main(String[] args) throws IOException {
     Lexer lex = new Lexer();
-    lex.scan(); // temporary call is used to test earlier states
+    
+    Token tok = lex.scan(); // temporary block is used to test earlier states
+    do {
+      System.out.write(tok.tag);
+      tok = lex.scan();
+    } while (tok.tag != 0);
+    
     //Parser parse = new Parser(lex);
     //parse.program();
     System.out.write(’\n’);
