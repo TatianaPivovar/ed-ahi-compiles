@@ -14,7 +14,7 @@ public class Main {
     do {
       System.out.write(tok.tag);
       break;
-      tok = lex.scan();
+      //tok = lex.scan();
     } while (tok.tag != 0);
     
     //Parser parse = new Parser(lex);
