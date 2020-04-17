@@ -29,7 +29,10 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        echo Compile Postfix parser
         javac Postfix.java
+        echo Test Postfix
         echo "9-5+2" | java Postfix
+        echo Compile lexer package
+        javac lexer/*.java
+        ls
