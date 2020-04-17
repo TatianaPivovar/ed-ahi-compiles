@@ -21,8 +21,8 @@ public class Lexer {
   
   public Token scan() throws IOException {
     for( ; ; peek = (char)System.in.read() ) {
-      if( peek == ’ ’ || peek == ’\t’ ) continue;
-      else if( peek == ’\n’ ) line = line + 1;
+      if( peek == ' ' || peek == '\t' ) continue;
+      else if( peek == '\n' ) line = line + 1;
       else break;
     }
 
@@ -37,7 +37,7 @@ public class Lexer {
 
     if( Character.isLetter(peek) ) {
       StringBuffer b = new StringBuffer();
-      do{
+      do {
         b.append(peek);
         peek = (char)System.in.read();
       } while( Character.isLetterOrDigit(peek) );
@@ -52,7 +52,7 @@ public class Lexer {
       return w;
     }
     Token t = new Token(peek);
-    peek=’’;
+    peek = ' ';
     return t;
   }
 }
