@@ -37,4 +37,4 @@ jobs:
         javac lexer/*.java
         echo Test lexer
         javac main/*.java
-        cat test | java main/Main
+        echo "$(<test)" | java main/Main
