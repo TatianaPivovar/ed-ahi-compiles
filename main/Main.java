@@ -10,12 +10,13 @@ public class Main {
     Lexer lex = new Lexer();
     
     System.out.println("start...");
+    int counter = 0;
     Token tok = lex.scan(); // temporary block is used to test earlier states
     do {
+      ++counter;
       System.out.print(tok.tag);
-      break;
-      //tok = lex.scan();
-    } while (tok.tag != 0);
+      tok = lex.scan();
+    } while (tok.tag != 0 && counter < 30);
     
     //Parser parse = new Parser(lex);
     //parse.program();
