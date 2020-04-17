@@ -35,4 +35,4 @@ jobs:
         echo "9-5+2" | java Postfix
         echo Compile lexer package
         javac lexer/*.java
-        ls
+        ls lexer
