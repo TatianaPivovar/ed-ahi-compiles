@@ -16,7 +16,7 @@ public class Main {
     do {
       if (tokens.size() < lex.line)
         tokens.add(new ArrayList<Integer>());
-      tokens.get(lex.line).add(tok.tag);
+      tokens.get(lex.line - 1).add(tok.tag);
       tok = lex.scan();
     } while (tok.tag != (int)(char)(-1)); // EOL
     
