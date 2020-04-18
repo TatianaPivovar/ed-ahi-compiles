@@ -74,10 +74,9 @@ public class Lexer {
         if (_peek == '/') {
           while (_peek != '\n')
             peek();
-          tag = Tag.LINE_COMMENT;
+          return new Token(Tag.LINE_COMMENT);
         } else
           return new Token(Tag.DIV); // to save _peek state
-        break;
       default:
         tag = Tag.UNDEFINED;
         break;
