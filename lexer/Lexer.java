@@ -57,7 +57,7 @@ public class Lexer {
       case (char)(-1):
         tag = Tag.EOF;
         break;
-      cas '\n':
+      case '\n':
         tag = Tag.NEW_LINE;
         break;
       case '+':
