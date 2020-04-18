@@ -9,6 +9,5 @@ public enum Tag {
   ID,
   TRUE,
   FALSE,
-  LINE_COMMENT,
   EOF
 }
