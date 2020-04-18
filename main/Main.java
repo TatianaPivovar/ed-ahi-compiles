@@ -1,6 +1,7 @@
 // for testing
 package main;
 
+import java.util.*;
 import java.io.*;
 import lexer.*;
 //import parser.*;
