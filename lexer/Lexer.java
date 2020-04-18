@@ -4,8 +4,6 @@ import java.io.*;
 import java.util.*;
 
 public class Lexer {
-
-  public int line = 1;
   
   private char _peek = ' ';
   private Hashtable words = new Hashtable();
@@ -21,13 +19,11 @@ public class Lexer {
   
   void peek() throws IOException {
     _peek = (char)System.in.read();
-    if (_peek == '\n')
-      ++line;
   }
   
   public Token scan() throws IOException {
     for( ; ; peek() ) {
-      if( _peek == ' ' || _peek == '\t' || _peek == '\n' ) continue;
+      if( _peek == ' ' || _peek == '\t' ) continue;
       else break;
     }
 
@@ -60,6 +56,9 @@ public class Lexer {
     switch(_peek) {
       case (char)(-1):
         tag = Tag.EOF;
+        break;
+      cas '\n':
+        tag = Tag.NEW_LINE;
         break;
       case '+':
         tag = Tag.ADD;
