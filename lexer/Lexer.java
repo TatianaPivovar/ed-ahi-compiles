@@ -30,7 +30,7 @@ public class Lexer {
       else break;
     }
 
-    if( Character.isDigit(peek) ) {
+    if( Character.isDigit(_peek) ) {
       int v = 0;
       do {
         v = 10*v + Character.digit(_peek, 10);
