@@ -7,7 +7,7 @@ public class Lexer {
 
   public int line = 1;
   
-  private char peek = ' ';
+  private char _peek = ' ';
   private Hashtable words = new Hashtable();
   
   void reserve(Word t) {
@@ -19,28 +19,32 @@ public class Lexer {
     reserve( new Word(Tag.FALSE, "false") );
   }
   
+  void peek() throws IOException {
+    _peek = (char)System.in.read();
+  }
+  
   public Token scan() throws IOException {
-    for( ; ; peek = (char)System.in.read() ) {
-      if( peek == ' ' || peek == '\t' ) continue;
-      else if( peek == '\n' ) line = line + 1;
+    for( ; ; peek() ) {
+      if( _peek == ' ' || _peek == '\t' ) continue;
+      else if( _peek == '\n' ) line = line + 1;
       else break;
     }
 
     if( Character.isDigit(peek) ) {
       int v = 0;
       do {
-        v = 10*v + Character.digit(peek, 10);
-        peek = (char)System.in.read();
-      } while( Character.isDigit(peek) );
+        v = 10*v + Character.digit(_peek, 10);
+        peek();
+      } while( Character.isDigit(_peek) );
       return new Num(v);
     }
 
-    if( Character.isLetter(peek) ) {
+    if( Character.isLetter(_peek) ) {
       StringBuffer b = new StringBuffer();
       do {
-        b.append(peek);
-        peek = (char)System.in.read();
-      } while( Character.isLetterOrDigit(peek) );
+        b.append(_peek);
+        peek();
+      } while( Character.isLetterOrDigit(_peek) );
   
       String s = b.toString();
       Word w = (Word)words.get(s);
@@ -52,7 +56,7 @@ public class Lexer {
       return w;
     }
     Tag tag;
-    switch(peek) {
+    switch(_peek) {
       case (char)(-1):
         tag = Tag.EOF;
         break;
@@ -73,7 +77,7 @@ public class Lexer {
         break;
     }
     Token t = new Token(tag);
-    peek = ' ';
+    _peek = ' ';
     return t;
   }
 }
