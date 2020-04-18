@@ -22,10 +22,7 @@ public class Lexer {
   }
   
   public Token scan() throws IOException {
-    for( ; ; peek() ) {
-      if( _peek == ' ' || _peek == '\t' ) continue;
-      else break;
-    }
+    for( ; _peek == ' ' || _peek == '\t'; peek() ) {}
 
     if( Character.isDigit(_peek) ) {
       int v = 0;
