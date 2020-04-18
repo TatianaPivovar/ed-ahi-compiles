@@ -10,13 +10,17 @@ public class Main {
     Lexer lex = new Lexer();
     
     System.out.println("start...");
+    ArrayList tokens = new ArrayList();
     Token tok = lex.scan(); // temporary block is used to test earlier states
     do {
-      System.out.print(lex.line);
-      System.out.print(". ");
-      System.out.println(tok.tag);
+      if (tokens.size() < lex.line)
+        tokens.add(new ArrayList());
+      tokens.get(lex.line).add(tok.tag);
       tok = lex.scan();
     } while (tok.tag != (int)(char)(-1)); // EOL
+    
+    for(ArrayList t: tokens)
+      System.out.println(t);
     
     //Parser parse = new Parser(lex);
     //parse.program();
