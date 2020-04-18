@@ -16,7 +16,7 @@ public class Main {
       System.out.print(". ");
       System.out.println(tok.tag);
       tok = lex.scan();
-    } while (tok.tag != -1); // EOL
+    } while (tok.tag != (int)(char)(-1)); // EOL
     
     //Parser parse = new Parser(lex);
     //parse.program();
