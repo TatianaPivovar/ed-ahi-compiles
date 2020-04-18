@@ -51,7 +51,28 @@ public class Lexer {
       words.put(s, w);
       return w;
     }
-    Token t = new Token(peek);
+    Tag tag;
+    switch(peek) {
+      case (char)(-1):
+        tag = Tag.EOF;
+        break;
+      case '+':
+        tag = Tag.ADD;
+        break;
+      case '-':
+        tag = Tag.SUB;
+        break;
+      case '*':
+        tag = Tag.MUL;
+        break;
+      case '/':
+        tag = Tag.DIV;
+        break;
+      default:
+        tag = Tag.UNDEFINED;
+        break;
+    }
+    Token t = new Token(tag);
     peek = ' ';
     return t;
   }
