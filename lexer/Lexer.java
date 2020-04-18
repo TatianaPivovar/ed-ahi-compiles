@@ -20,10 +20,16 @@ public class Lexer {
   }
   
   public Token scan() throws IOException {
-    for( ; ; peek = (char)System.in.read() ) {
-      if( peek == ' ' || peek == '\t' ) continue;
-      else if( peek == '\n' ) line = line + 1;
-      else break;
+    peek = (char)System.in.read();
+    return scan(peek);
+  }
+  
+  public Token scan(char c) throws IOException {
+    peek = c;
+    while (peek == ' ' || peek == '\t' || peek == '\n') {
+      if (peek == '\n')
+        ++line;
+      peek = (char)System.in.read();
     }
 
     if( Character.isDigit(peek) ) {
