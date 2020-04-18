@@ -70,7 +70,14 @@ public class Lexer {
         tag = Tag.MUL;
         break;
       case '/':
-        tag = Tag.DIV;
+        peek();
+        if (_peek == '/') {
+          while (_peek != '\n')
+            peek();
+          line = line + 1;
+          tag = Tag.LINE_COMMENT;
+        } else
+          return new Token(Tag.DIV); // to save _peek state
         break;
       default:
         tag = Tag.UNDEFINED;
