@@ -12,11 +12,13 @@ public class Main {
     
     System.out.println("start...");
     ArrayList<ArrayList<Tag> > tokens = new ArrayList<ArrayList<Tag> >();
+    tokens.add(new ArrayList<Tag>());
     Token tok = lex.scan(); // temporary block is used to test earlier states
     do {
-      if (tokens.size() < lex.line)
+      if (tok.tag == Tag.NEW_LINE)
         tokens.add(new ArrayList<Tag>());
-      tokens.get(lex.line - 1).add(tok.tag);
+      else
+        tokens.get(tokens.size() - 1).add(tok.tag);
       tok = lex.scan();
     } while (tok.tag != Tag.EOF);
     
