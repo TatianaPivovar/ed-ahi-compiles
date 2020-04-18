@@ -21,12 +21,13 @@ public class Lexer {
   
   void peek() throws IOException {
     _peek = (char)System.in.read();
+    if (_peek = '\n')
+      ++line;
   }
   
   public Token scan() throws IOException {
     for( ; ; peek() ) {
-      if( _peek == ' ' || _peek == '\t' ) continue;
-      else if( _peek == '\n' ) line = line + 1;
+      if( _peek == ' ' || _peek == '\t' || _peek == '\n' ) continue;
       else break;
     }
 
@@ -74,7 +75,6 @@ public class Lexer {
         if (_peek == '/') {
           while (_peek != '\n')
             peek();
-          line = line + 1;
           tag = Tag.LINE_COMMENT;
         } else
           return new Token(Tag.DIV); // to save _peek state
