@@ -15,7 +15,7 @@ public class Main {
     Token tok = lex.scan(); // temporary block is used to test earlier states
     do {
       if (tokens.size() < lex.line)
-        tokens.add(new ArrayList<Integer>());
+        tokens.add(new ArrayList<Tag>());
       tokens.get(lex.line - 1).add(tok.tag);
       tok = lex.scan();
     } while (tok.tag != Tag.EOF);
