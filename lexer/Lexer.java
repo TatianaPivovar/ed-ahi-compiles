@@ -21,7 +21,7 @@ public class Lexer {
   
   void peek() throws IOException {
     _peek = (char)System.in.read();
-    if (_peek = '\n')
+    if (_peek == '\n')
       ++line;
   }
   
