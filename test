@@ -1,5 +1,6 @@
+// one line comment
 9+5-2
-23 + 45 * 17
+23 + 45 * 17 // another one line comment
 247 / var
 true
 false
