@@ -1,5 +1,6 @@
 package lexer;
 public enum Tag {
+  UNDEFINED,
   ADD,
   SUB,
   MUL,
