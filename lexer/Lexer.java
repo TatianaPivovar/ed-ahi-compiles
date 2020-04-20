@@ -75,10 +75,10 @@ public class Lexer {
           for (;;) {
             if (peek() == '*')
               if (peek() == '/') {
-                tag = Tag.MULTILINE_COMMENT;
-                break;
+                peek();
+                return new Token(Tag.MULTILINE_COMMENT);
               }
-            if (_peek == '\n')
+            else if (_peek == '\n')
               ++line_num;
           }
         } else
