@@ -74,8 +74,10 @@ public class Lexer {
         } else if (_peek =='*') {
           for (;;) {
             if (peek() == '*')
-              if (peek() == '/')
-                return new Token(Tag.MULTILINE_COMMENT);
+              if (peek() == '/') {
+                tag = Tag.MULTILINE_COMMENT;
+                break;
+              }
             if (_peek == '\n')
               ++line_num;
           }
