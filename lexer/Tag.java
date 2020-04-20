@@ -10,6 +10,7 @@ public enum Tag {
   TRUE,
   FALSE,
   LINE_COMMENT,
+  MULTILINE_COMMENT,
   NEW_LINE,
   EOF
 }

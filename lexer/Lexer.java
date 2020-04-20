@@ -5,6 +5,8 @@ import java.util.*;
 
 public class Lexer {
   
+  public int line_num = 0; // multiline comments can contain new lines, but not the NEW_LINE token
+  
   private char _peek = ' ';
   private Hashtable words = new Hashtable();
   
@@ -17,8 +19,9 @@ public class Lexer {
     reserve( new Word(Tag.FALSE, "false") );
   }
   
-  void peek() throws IOException {
+  char peek() throws IOException {
     _peek = (char)System.in.read();
+    return _peek;
   }
   
   public Token scan() throws IOException {
@@ -28,8 +31,7 @@ public class Lexer {
       int v = 0;
       do {
         v = 10*v + Character.digit(_peek, 10);
-        peek();
-      } while( Character.isDigit(_peek) );
+      } while( Character.isDigit(peek()) );
       return new Num(v);
     }
 
@@ -37,8 +39,7 @@ public class Lexer {
       StringBuffer b = new StringBuffer();
       do {
         b.append(_peek);
-        peek();
-      } while( Character.isLetterOrDigit(_peek) );
+      } while( Character.isLetterOrDigit(peek()) );
   
       String s = b.toString();
       Word w = (Word)words.get(s);
@@ -55,6 +56,7 @@ public class Lexer {
         tag = Tag.EOF;
         break;
       case '\n':
+        ++line_num;
         tag = Tag.NEW_LINE;
         break;
       case '+':
@@ -67,11 +69,19 @@ public class Lexer {
         tag = Tag.MUL;
         break;
       case '/':
-        peek();
-        if (_peek == '/') {
-          while (_peek != '\n')
-            peek();
+        if (peek() == '/') {
+          while (peek() != '\n') ;
           return new Token(Tag.LINE_COMMENT);
+        } else if (_peek =='*') {
+          for (;;) {
+            if (peek() == '*')
+              if (peek() == '/') {
+                peek();
+                return new Token(Tag.MULTILINE_COMMENT);
+              }
+            else if (_peek == '\n')
+              ++line_num;
+          }
         } else
           return new Token(Tag.DIV); // to save _peek state
       default:
