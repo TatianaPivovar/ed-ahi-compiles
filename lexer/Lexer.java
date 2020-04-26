@@ -84,6 +84,30 @@ public class Lexer {
           }
         } else
           return new Token(Tag.DIV); // to save _peek state
+      case '!':
+        if (peek() == '=') {
+          peek();
+          return new Token(Tag.NE);
+        } else
+          return new Token(Tag.NOT);
+      case '=':
+        if (peek() == '=') {
+          peek();
+          return new Token(Tag.EQ);
+        }
+        break;
+      case '<':
+        if (peek() == '=') {
+          peek();
+          return new Tomen(Tag.LE);
+        } else
+          return new Token(Tag.LT);
+      case '>':
+        if (peek() == '=') {
+          peek();
+          return new Token(Tag.GE);
+        } else
+          return new Token(Tag.GT);
       default:
         tag = Tag.UNDEFINED;
         break;
