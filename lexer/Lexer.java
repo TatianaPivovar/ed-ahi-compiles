@@ -50,7 +50,7 @@ public class Lexer {
       words.put(s, w);
       return w;
     }
-    Tag tag;
+    Tag tag = Tag.UNDEFINED;
     switch(_peek) {
       case (char)(-1):
         tag = Tag.EOF;
@@ -84,6 +84,30 @@ public class Lexer {
           }
         } else
           return new Token(Tag.DIV); // to save _peek state
+      case '!':
+        if (peek() == '=') {
+          peek();
+          return new Token(Tag.NE);
+        } else
+          return new Token(Tag.NOT);
+      case '=':
+        if (peek() == '=') {
+          peek();
+          return new Token(Tag.EQ);
+        }
+        break;
+      case '<':
+        if (peek() == '=') {
+          peek();
+          return new Token(Tag.LE);
+        } else
+          return new Token(Tag.LT);
+      case '>':
+        if (peek() == '=') {
+          peek();
+          return new Token(Tag.GE);
+        } else
+          return new Token(Tag.GT);
       default:
         tag = Tag.UNDEFINED;
         break;
