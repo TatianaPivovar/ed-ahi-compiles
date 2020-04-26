@@ -50,7 +50,7 @@ public class Lexer {
       words.put(s, w);
       return w;
     }
-    Tag tag;
+    Tag tag = Tag.UNDEFINED;
     switch(_peek) {
       case (char)(-1):
         tag = Tag.EOF;
