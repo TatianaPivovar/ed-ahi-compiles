@@ -99,7 +99,7 @@ public class Lexer {
       case '<':
         if (peek() == '=') {
           peek();
-          return new Tomen(Tag.LE);
+          return new Token(Tag.LE);
         } else
           return new Token(Tag.LT);
       case '>':
