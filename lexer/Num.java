@@ -1,8 +1,11 @@
 package lexer;
 public class Num extends Token {
-  public final int value;
+  private final int characteristic;
   public Num(int v) {
     super(Tag.NUM);
-    value = v;
+    characteristic = v;
+  }
+  public int value() {
+    return characteristic;
   }
 }
