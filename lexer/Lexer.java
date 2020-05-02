@@ -24,7 +24,7 @@ public class Lexer {
     return _peek;
   }
   
-  float addFractionToInt(int val) {
+  float addFractionToInt(int val) throws IOException{
     float frac = 0.0f;
     float base = 0.1f;
     while (Character.isDigit(peek())) {
