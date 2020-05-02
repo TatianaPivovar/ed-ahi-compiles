@@ -27,7 +27,7 @@ public class Lexer {
   float addFractionToInt(int val) {
     float frac = 0.0;
     float base = 0.1;
-    while (Character.isDigit(peek()) {
+    while (Character.isDigit(peek())) {
       frac += Character.digit(_peek, 10) * base;
       base *= 0.1;
     }
