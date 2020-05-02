@@ -6,6 +6,7 @@ public enum Tag {
   MUL,
   DIV,
   NUM,
+  FLOAT,
   ID,
   TRUE,
   FALSE,
