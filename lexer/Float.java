@@ -1,11 +1,11 @@
 package lexer;
-public class Float extends Num {
-  private final float mantissa;
-  public Float(int int_val, float fraction) {
-    super(int_val);
-    mantissa = frac;
+public class Float extends Tag {
+  private final float value;
+  public Float(float val) {
+    super(Tag.FLOAT);
+    value = val;
   }
   public float value() {
-    return characteristic + mantissa;
+    return value;
   }
 }
