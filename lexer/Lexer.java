@@ -24,6 +24,16 @@ public class Lexer {
     return _peek;
   }
   
+  float addFractionToInt(int val) throws IOException{
+    float frac = 0.0f;
+    float base = 0.1f;
+    while (Character.isDigit(peek())) {
+      frac += Character.digit(_peek, 10) * base;
+      base *= 0.1;
+    }
+    return val + frac;
+  }
+  
   public Token scan() throws IOException {
     for( ; _peek == ' ' || _peek == '\t'; peek() ) {}
 
@@ -32,7 +42,10 @@ public class Lexer {
       do {
         v = 10*v + Character.digit(_peek, 10);
       } while( Character.isDigit(peek()) );
-      return new Num(v);
+      if (_peek == '.') {
+        return new Float(addFractionToInt(v));
+      } else
+        return new Num(v);
     }
 
     if( Character.isLetter(_peek) ) {
@@ -108,6 +121,8 @@ public class Lexer {
           return new Token(Tag.GE);
         } else
           return new Token(Tag.GT);
+      case '.':
+        return new Float(addFractionToInt(0));
       default:
         tag = Tag.UNDEFINED;
         break;

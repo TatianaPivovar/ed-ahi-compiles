@@ -5,9 +5,9 @@
  * line
  * comment
  */
-23 + 45 * 17 // another one line comment
+2.3 + 45 * 17 // another one line comment
 247 / /*inline comment*/ var
 true != false
 false == !true
-23 > 45 == 45 < 23
+23 > 45 == .45 < 23
 6 >= 3 != 6 <= 3
